@@ -31,6 +31,8 @@
     "desc": "Gelir ve giderlerinizi takip ederek finansal hedeflerinize ulaşın.",
     "features": ["Grafik Analizleri", "Excel Dışa Aktar", "Çoklu Para Birimi"],
     "version": "1.0.0",
+    "playStoreUrl": "#",
+    "appStoreUrl": "#",
     "privacy": "Bütçe Yöneticisi verilerinizi şifrelenmiş olarak saklar.",
     "badge": null
   }
