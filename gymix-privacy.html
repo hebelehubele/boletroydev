@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gymix Gizlilik Politikası</title>
+    <meta name="description" content="Gymix uygulaması için gizlilik politikası.">
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #f5efe6;
+            --panel: #ffffff;
+            --text: #1f2937;
+            --muted: #5b6472;
+            --line: rgba(31, 41, 55, 0.12);
+            --accent: #bb3e03;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(180deg, #fff8f1 0%, var(--bg) 100%);
+            color: var(--text);
+        }
+        .wrap {
+            width: min(920px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 32px 0 72px;
+        }
+        .topbar, .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: 0 18px 45px rgba(31, 41, 55, 0.08);
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 22px;
+            margin-bottom: 22px;
+        }
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 999px;
+            background: #fff3eb;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .panel { padding: 28px; }
+        .hero {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+        .hero img {
+            width: 88px;
+            height: 88px;
+            border-radius: 24px;
+            object-fit: cover;
+            box-shadow: 0 12px 30px rgba(31, 41, 55, 0.12);
+        }
+        h1, h2 { letter-spacing: -0.03em; }
+        h1 { margin: 0 0 8px; font-size: clamp(2rem, 4vw, 3rem); }
+        h2 { margin: 0 0 10px; font-size: 1.1rem; }
+        p, li { color: var(--muted); line-height: 1.8; }
+        .meta, .url-box {
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 16px 18px;
+            background: #fffaf6;
+        }
+        .meta { margin-bottom: 20px; }
+        .url-box {
+            font-family: Consolas, monospace;
+            word-break: break-word;
+            margin-top: 18px;
+        }
+        .section {
+            margin-top: 18px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: #fffdfa;
+        }
+        ul { margin: 0; padding-left: 20px; }
+        @media (max-width: 640px) {
+            .topbar, .hero { flex-direction: column; align-items: flex-start; }
+            .panel { padding: 22px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="topbar">
+            <strong>boletroydev</strong>
+            <a class="back" href="index.html">Ana siteye dön</a>
+        </div>
+
+        <div class="panel">
+            <div class="hero">
+                <img src="icons/gymix-logo.jpg" alt="Gymix logosu">
+                <div>
+                    <h1>Gymix Gizlilik Politikası</h1>
+                    <p>Son güncelleme: 21 Nisan 2026</p>
+                </div>
+            </div>
+
+            <div class="meta">
+                <p>Gymix, kullanıcının fitness ve alışkanlık verilerini uygulama işlevlerini sunmak amacıyla işler. Uygulama, reklam satışı amacıyla kişisel verileri üçüncü taraflara satmaz.</p>
+            </div>
+
+            <div class="section">
+                <h2>1. Toplanan veriler</h2>
+                <ul>
+                    <li>Kullanıcının manuel olarak eklediği antrenman kayıtları</li>
+                    <li>Alışkanlık hedefleri, tamamlanma durumu ve odak seansı bilgileri</li>
+                    <li>Uygulama ayarları, tema tercihi ve cihaz üzerinde tutulan teknik kullanım verileri</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>2. Toplanmayan veriler</h2>
+                <ul>
+                    <li>Kredi kartı veya ödeme bilgileri</li>
+                    <li>Resmi kimlik numarası</li>
+                    <li>Rehber, kısa mesaj veya çağrı kayıtları</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>3. Kullanım amaçları</h2>
+                <ul>
+                    <li>Temel uygulama fonksiyonlarını sunmak</li>
+                    <li>Kullanıcının geçmiş kayıtlarını göstermek</li>
+                    <li>Cihaz üzerinde kişiselleştirilmiş deneyim sağlamak</li>
+                    <li>Hata ayıklama ve hizmet kalitesini iyileştirmek</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>4. Üçüncü taraflarla paylaşım</h2>
+                <p>Gymix kapsamında tutulan kişisel veriler, reklam veya pazarlama amacıyla satılmaz. Yasal yükümlülük doğması dışında veriler üçüncü taraflarla paylaşılmaz.</p>
+            </div>
+
+            <div class="section">
+                <h2>5. Saklama süresi ve silme yaklaşımı</h2>
+                <p>Veriler ağırlıklı olarak cihaz üzerinde veya uygulama altyapısında hizmet sunumu için gerekli süre boyunca saklanır. Kullanıcı uygulama içeriğini sildiğinde ya da kaldırdığında ilgili kayıtlar erişilemez hale gelir.</p>
+            </div>
+
+            <div class="section">
+                <h2>6. Güvenlik önlemleri</h2>
+                <p>Uygulama içinde saklanan bilgiler yetkisiz erişime karşı makul teknik ve idari önlemlerle korunur. Buna erişim kısıtlamaları, güvenli aktarım yöntemleri ve düzenli bakım süreçleri dahildir.</p>
+            </div>
+
+            <div class="section">
+                <h2>7. Çocukların gizliliği</h2>
+                <p>Gymix genel kitleye yöneliktir ve özellikle çocuklara hedeflenmez. Geliştirici, ebeveyn onayı gerektiren yaş grubundan bilerek veri toplama amacı taşımaz.</p>
+            </div>
+
+            <div class="section">
+                <h2>8. Kullanıcı hakları</h2>
+                <p>Kullanıcı, uygulama içindeki verilerini düzenleyebilir, silebilir veya uygulamayı kaldırarak yerel verileri kaldırabilir. Geçerli mevzuat kapsamındaki talepler için mağaza geliştirici iletişim kanalı kullanılabilir.</p>
+            </div>
+
+            <div class="section">
+                <h2>Test bağlantıları</h2>
+                <p>Bu uygulama için henüz aktif bir test bağlantısı eklenmedi.</p>
+            </div>
+
+            <div class="section">
+                <h2>9. Politika değişiklikleri</h2>
+                <p>Bu politika gerektiğinde güncellenebilir. Güncel sürüm her zaman bu sayfada yayımlanır.</p>
+            </div>
+
+            <div class="url-box">Bu sayfa bağlantısı: gymix-privacy.html</div>
+        </div>
+    </div>
+</body>
+</html>

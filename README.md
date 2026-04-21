@@ -1,111 +1,208 @@
-# boletroydev - Apps Showcase Website
+# boletroydev
 
-## 🚀 Yeni App Ekleme Rehberi
+Bu proje, uygulamalarını tek yerde tanıtmak ve her uygulama için ayrı gizlilik politikası sayfası yayımlamak için hazırlandı.
 
-Web sitenize yeni bir app eklemek **çok kolay**! Sadece `apps.json` dosyasına yeni bir entry ekleyin.
+Ana mantık:
 
----
+- Ana vitrin sayfası: [index.html](./index.html)
+- Uygulama verileri: [apps.json](./apps.json)
+- Uygulamaya özel gizlilik sayfaları:
+  `gymix-privacy.html`
+  `downgrade-privacy.html`
+  `fastwallet-privacy.html`
 
-## 📋 apps.json Yapısı
+Bu yapı özellikle şu senaryo için uygun:
+
+- Uygulamalar çok büyük değil
+- Her uygulama için Google Play'e verilecek ayrı bir privacy policy linki lazım
+- Bazı uygulamaların kendi web sitesi var, bazılarının yok
+- Test linkleri de aynı yerde yönetilmek isteniyor
+
+## Dosya Yapısı
+
+- `index.html`
+  Ana vitrin, uygulama kartları, detay ekranı ve politika merkezi.
+- `apps.json`
+  Yeni uygulama eklerken dolduracağın ana veri dosyası.
+- `*-privacy.html`
+  Her uygulama için bağımsız gizlilik politikası sayfası.
+- `icons/`
+  Uygulama ikonları.
+
+## Yeni App Ekleme
+
+Yeni bir app eklerken genelde 4 adım yeterli:
+
+1. İkonu `icons/` klasörüne koy.
+2. `apps.json` içine yeni uygulamayı ekle.
+3. Aynı uygulama için yeni bir `*-privacy.html` dosyası oluştur.
+4. Gerekirse test linklerini ve website linkini doldur.
+
+## apps.json Şablonu
+
+Yeni uygulama eklerken aşağıdaki yapıyı kopyalayıp düzenleyebilirsin:
 
 ```json
 {
-  "benzersiz-app-id": {
-    "title": "App Adı",
-    "icon": "icons/app-logo.png",
-    "desc": "Kısa açıklama (1-2 cümle)",
-    "features": ["Özellik 1", "Özellik 2", "Özellik 3"],
+  "yeni-app-id": {
+    "title": "Yeni App",
+    "icon": "icons/yeni-app.png",
+    "desc": "Uygulamanın kısa açıklaması.",
+    "features": [
+      "Özellik 1",
+      "Özellik 2",
+      "Özellik 3"
+    ],
     "version": "1.0.0",
-    "playStoreUrl": "https://play.google.com/store/apps/details?id=...",
-    "appStoreUrl": "https://apps.apple.com/app/...",
-    "privacy": "Gizlilik politikası metni (3-5 cümle)",
-    "badge": "Yeni" // "Yeni", "Güncellendi" veya null
+    "websiteUrl": "#",
+    "playStoreUrl": "#",
+    "appStoreUrl": "#",
+    "testLinks": [
+      {
+        "label": "Android Test",
+        "url": "#",
+        "note": "APK veya internal test bağlantısı"
+      },
+      {
+        "label": "iOS Test",
+        "url": "#",
+        "note": "TestFlight bağlantısı"
+      }
+    ],
+    "badge": "Yeni",
+    "privacyPage": "yeni-app-privacy.html",
+    "privacy": {
+      "lastUpdated": "21 Nisan 2026",
+      "summary": "Bu uygulamanın kısa gizlilik özeti.",
+      "dataCollected": [
+        "Toplanan veri 1",
+        "Toplanan veri 2"
+      ],
+      "dataNotCollected": [
+        "Toplanmayan veri 1",
+        "Toplanmayan veri 2"
+      ],
+      "usagePurposes": [
+        "Amaç 1",
+        "Amaç 2"
+      ],
+      "sharing": "Veri paylaşımı ile ilgili açıklama.",
+      "storage": "Veri saklama ile ilgili açıklama.",
+      "security": "Güvenlik önlemleri ile ilgili açıklama.",
+      "children": "Çocukların gizliliği ile ilgili açıklama.",
+      "userRights": "Kullanıcı hakları ile ilgili açıklama."
+    }
   }
 }
 ```
 
----
+## Alanların Anlamı
 
-## 🎯 Hızlı Ekleme Adımları
+- `title`
+  Uygulamanın görünen adı.
+- `icon`
+  `icons/` klasöründeki ikon yolu.
+- `desc`
+  Kartta ve detay sayfasında görünen kısa açıklama.
+- `features`
+  Kısa madde listesi.
+- `version`
+  Mevcut sürüm bilgisi.
+- `websiteUrl`
+  Uygulamanın kendi sitesi varsa linkini yaz. Yoksa `"#"` bırak.
+- `playStoreUrl`
+  Mağaza linki varsa ekle. Yoksa `"#"`.
+- `appStoreUrl`
+  App Store linki varsa ekle. Yoksa `"#"`.
+- `testLinks`
+  TestFlight, APK, Firebase App Distribution veya kapalı test linkleri.
+- `badge`
+  `"Yeni"`, `"Güncellendi"` ya da `null`.
+- `privacyPage`
+  O uygulamaya ait bağımsız gizlilik dosyasının adı.
+- `privacy`
+  Uygulama için detaylı politika içeriği.
 
-### 1. App İkonunu Hazırlayın
+## Website Alanı Nasıl Çalışır?
 
-- Logonuzu `icons/` klasörüne ekleyin
-- Format: `.png`, `.jpg` veya `.jpeg`
-- Boyut: 512x512px idealdir
+- `websiteUrl` gerçek bir link ise kartta ve detay sayfasında `Website` butonu görünür.
+- `websiteUrl` `"#"` ise buton çıkmaz.
+- Ayrıca uygulama kartında durum etiketi görünür:
+  sitesi varsa `Website Hazır`
+  sitesi yoksa `Website Yakında`
 
-### 2. apps.json'a Entry Ekleyin
+Bu sayede bazı uygulamalarda site varken bazılarında yoksa arayüz bozulmaz.
 
-```json
-{
-  "yeni-appim": {
-    "title": "Süper App",
-    "icon": "icons/super-app-logo.png",
-    "desc": "Bu harika bir uygulama. Çok işe yarar.",
-    "features": ["Hızlı ve güvenli", "Kullanımı kolay", "Çevrimdışı çalışır"],
-    "version": "1.0.0",
-    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.example",
-    "appStoreUrl": "https://apps.apple.com/app/...",
-    "privacy": "Uygulamak verilerinizi şifrelenmiş olarak cihazınızda saklar. Hiçbir veri servis sunucularına gönderilmez.",
-    "badge": "Yeni"
-  }
-}
-```
+## Test Linkleri Nasıl Çalışır?
 
-### 3. Tarayıcıyı Yenileyin
+- `testLinks` içindeki `url` gerçek bir link ise buton görünür.
+- `url` `"#"` ise buton görünmez.
+- Test linki yoksa detay ekranında ve gizlilik sayfasında bilgilendirici bir not görünür.
 
-- `F5` tuşuna basarak sayfayı yenileyin
-- Yeni app'iniz anında görünecek! 🎉
+Örnek test linkleri:
 
----
+- Google Play internal testing
+- Google Play closed testing
+- Firebase App Distribution
+- Direkt APK linki
+- TestFlight
 
-## 📌 Önemli Notlar
+## Gizlilik Sayfası Nasıl Oluşturulur?
 
-- **benzersiz-app-id**: Her app için türkçe karaktersiz, benzersiz bir kimlik kullanın
-- **title**: App mağazasında görünen adı kullanın
-- **icon**: Dosya yolu `icons/` klasörüne göre olmalı
-- **features**: 3-4 özellik yeterlidir
-- **privacy**: Google Play'de gizlilik politikası gerekli
-- **playStoreUrl**: Henüz yayınlanmadıysa `"#"` yazın
-- **appStoreUrl**: Henüz yayınlanmadıysa `"#"` yazın
-- **badge**: `"Yeni"` ya da `"Güncellendi"` yazın, yoksa `null` bırakın
+En kolay yöntem:
 
----
+1. Var olan privacy sayfalarından birini kopyala.
+2. Dosya adını yeni uygulamaya göre değiştir.
+3. Başlıkları, ikon yolunu ve metinleri düzenle.
+4. `apps.json` içindeki `privacyPage` alanını bu yeni dosya adıyla eşleştir.
 
-## 🎨 İkon Önerileri
+Örnek:
 
-Kullanılan Formatlar:
+- yeni dosya: `superapp-privacy.html`
+- `privacyPage`: `"superapp-privacy.html"`
 
-- ✅ `gymix-logo.jpg` (JPG)
-- ✅ `fastwallet-logo.png` (PNG)
-- ✅ `downgrade-logo.png` (PNG)
+## Google Play İçin Öneri
 
----
+Google Play tarafında mümkünse her uygulama için ayrı privacy page kullan:
 
-## 📱 Örnek: Google Play & App Store Linkler
+- `gymix-privacy.html`
+- `downgrade-privacy.html`
+- `fastwallet-privacy.html`
 
-**Google Play:**
+Bu yöntem tek genel politika sayfasından daha temiz görünür.
 
-```
-https://play.google.com/store/apps/details?id=com.yourcompany.appname
-```
+## Kendi Websitesi Olan App'ler
 
-**App Store:**
+Bir uygulamanın kendi domaini varsa:
 
-```
-https://apps.apple.com/us/app/app-name/id1234567890
-```
+- `websiteUrl` alanına gerçek siteyi yaz
+- istersen sonra privacy sayfasını da o domaine taşı
+- ama istersen bu repo içindeki privacy sayfasını kullanmaya devam et
 
----
+Yani iki model de mümkün:
 
-## ✨ Otomatik Özellikler
+- tanıtım sitesi dışarıda, privacy burada
+- hem tanıtım hem privacy uygulamanın kendi sitesinde
 
-- ✅ Dark Mode desteği
-- ✅ Responsive tasarım (mobil/tablet/desktop)
-- ✅ Detay sayfası
-- ✅ Gizlilik politikası görünümü
-- ✅ Animasyonlar
+## Hızlı Kontrol Listesi
 
----
+Yeni bir uygulama ekledikten sonra şunları kontrol et:
 
-**Hepsi bu kadar!** Yeni app eklemek için sadece `apps.json`'a 10 satır eklemek yeterli! 🚀
+1. İkon doğru görünüyor mu
+2. Kart açılıyor mu
+3. Detay sayfası açılıyor mu
+4. Gizlilik sayfası açılıyor mu
+5. `privacyPage` dosyası gerçekten var mı
+6. Website linki varsa çalışıyor mu
+7. Test linki varsa çalışıyor mu
+
+## Kısa Özet
+
+Yeni app eklerken normalde sadece şunları yapman yeterli:
+
+1. `apps.json` içine uygulamayı ekle
+2. `*-privacy.html` dosyasını oluştur
+3. ikon ekle
+4. varsa website ve test linklerini doldur
+
+Bu dört adımla sistemi kendi başına rahatça büyütebilirsin.

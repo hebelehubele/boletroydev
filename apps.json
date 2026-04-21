@@ -9,8 +9,21 @@
       "Odak seansı ve ilerleme görünümü"
     ],
     "version": "1.0.7",
+    "websiteUrl": "#",
     "playStoreUrl": "https://play.google.com/store",
     "appStoreUrl": "https://www.apple.com/app-store/",
+    "testLinks": [
+      {
+        "label": "Android Test",
+        "url": "#",
+        "note": "APK, internal test veya kapalı test bağlantısı"
+      },
+      {
+        "label": "iOS Test",
+        "url": "#",
+        "note": "TestFlight bağlantısı"
+      }
+    ],
     "badge": "Yeni",
     "privacy": {
       "lastUpdated": "21 Nisan 2026",
@@ -48,8 +61,16 @@
       "Basit kategori düzeni"
     ],
     "version": "1.0.0",
+    "websiteUrl": "#",
     "playStoreUrl": "#",
     "appStoreUrl": "#",
+    "testLinks": [
+      {
+        "label": "Android Test",
+        "url": "#",
+        "note": "APK veya internal test bağlantısı"
+      }
+    ],
     "badge": "Güncellendi",
     "privacy": {
       "lastUpdated": "21 Nisan 2026",
@@ -59,11 +80,7 @@
         "Hatırlatıcı tercihleri ve görev durumu bilgileri",
         "Temel cihaz içi ayarlar"
       ],
-      "dataNotCollected": [
-        "Konum verisi",
-        "Finansal bilgi",
-        "Sağlık verisi"
-      ],
+      "dataNotCollected": ["Konum verisi", "Finansal bilgi", "Sağlık verisi"],
       "usagePurposes": [
         "Görev listelerini göstermek ve güncellemek",
         "Hatırlatıcı mantığını çalıştırmak",
@@ -86,8 +103,16 @@
       "Dışa aktarma ve temel rapor mantığı"
     ],
     "version": "1.0.0",
+    "websiteUrl": "#",
     "playStoreUrl": "#",
     "appStoreUrl": "#",
+    "testLinks": [
+      {
+        "label": "Android Test",
+        "url": "#",
+        "note": "Deneme sürümü bağlantısı"
+      }
+    ],
     "badge": null,
     "privacy": {
       "lastUpdated": "21 Nisan 2026",

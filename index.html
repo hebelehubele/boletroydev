@@ -393,6 +393,11 @@
             white-space: nowrap;
         }
 
+        .badge-muted {
+            background: rgba(148, 163, 184, 0.18);
+            color: var(--muted);
+        }
+
         .feature-list,
         .policy-list {
             margin: 0;
@@ -717,9 +722,23 @@
                     "Odak seansı ve ilerleme görünümü"
                 ],
                 "version": "1.0.7",
+                "websiteUrl": "#",
                 "playStoreUrl": "https://play.google.com/store",
                 "appStoreUrl": "https://www.apple.com/app-store/",
+                "testLinks": [
+                    {
+                        "label": "Android Test",
+                        "url": "#",
+                        "note": "APK, internal test veya kapalı test bağlantısı"
+                    },
+                    {
+                        "label": "iOS Test",
+                        "url": "#",
+                        "note": "TestFlight bağlantısı"
+                    }
+                ],
                 "badge": "Yeni",
+                "privacyPage": "gymix-privacy.html",
                 "privacy": {
                     "lastUpdated": "21 Nisan 2026",
                     "summary": "Gymix, kullanıcının fitness ve alışkanlık verilerini uygulama işlevlerini sunmak amacıyla işler. Uygulama, reklam satışı amacıyla kişisel verileri üçüncü taraflara satmaz.",
@@ -756,9 +775,18 @@
                     "Basit kategori düzeni"
                 ],
                 "version": "1.0.0",
+                "websiteUrl": "#",
                 "playStoreUrl": "#",
                 "appStoreUrl": "#",
+                "testLinks": [
+                    {
+                        "label": "Android Test",
+                        "url": "#",
+                        "note": "APK veya internal test bağlantısı"
+                    }
+                ],
                 "badge": "Güncellendi",
+                "privacyPage": "downgrade-privacy.html",
                 "privacy": {
                     "lastUpdated": "21 Nisan 2026",
                     "summary": "Downgrade - Bacak Kası, kullanıcının eklediği görevleri ve uygulama tercihlerini çalışabilmek için kullanır. Uygulama basit işlevli olduğu için veri işleme kapsamı sınırlıdır.",
@@ -794,9 +822,18 @@
                     "Dışa aktarma ve temel rapor mantığı"
                 ],
                 "version": "1.0.0",
+                "websiteUrl": "#",
                 "playStoreUrl": "#",
                 "appStoreUrl": "#",
+                "testLinks": [
+                    {
+                        "label": "Android Test",
+                        "url": "#",
+                        "note": "Deneme sürümü bağlantısı"
+                    }
+                ],
                 "badge": null,
+                "privacyPage": "fastwallet-privacy.html",
                 "privacy": {
                     "lastUpdated": "21 Nisan 2026",
                     "summary": "Hızlı Cüzdan, kullanıcının bütçe kayıtlarını kişisel finans takibi amacıyla işler. Finansal yönetim aracı olmasına rağmen banka hesabına doğrudan erişim sağlamaz ve ödeme işlemi yürütmez.",
@@ -843,7 +880,11 @@
         }
 
         function getPolicyUrl(appId) {
-            return `${window.location.origin}${window.location.pathname}#privacy/${appId}`;
+            const app = apps[appId];
+            if (!app) {
+                return `${window.location.origin}${window.location.pathname}#privacy`;
+            }
+            return `${window.location.origin}${window.location.pathname.replace(/[^/]*$/, "")}${app.privacyPage}`;
         }
 
         function renderList(items, className = "feature-list") {
@@ -862,14 +903,36 @@
                             ${app.badge ? `<span class="badge">${escapeHtml(app.badge)}</span>` : ""}
                         </div>
                         <p class="muted">${escapeHtml(app.desc)}</p>
+                        <div class="inline-actions" style="margin-top: 14px;">
+                            ${app.websiteUrl && app.websiteUrl !== "#" ? `<span class="badge">Website Hazır</span>` : `<span class="badge badge-muted">Website Yakında</span>`}
+                        </div>
                         ${renderList(app.features)}
                         <div class="inline-actions" style="margin-top: 20px;">
                             <button class="primary-button" type="button" onclick="showAppDetail('${id}')">Detaya Git</button>
                             <button class="secondary-button" type="button" onclick="showPrivacy('${id}')">Gizlilik</button>
+                            <a class="secondary-button" href="${escapeHtml(app.privacyPage)}">Ayrı Sayfa</a>
+                            ${app.websiteUrl && app.websiteUrl !== "#" ? `<a class="secondary-button" href="${escapeHtml(app.websiteUrl)}" target="_blank" rel="noreferrer">Website</a>` : ""}
+                            ${renderTestLinks(app, true)}
                         </div>
                     </div>
                 </article>
             `).join("");
+        }
+
+        function renderTestLinks(app, compact = false) {
+            if (!app.testLinks || app.testLinks.length === 0) {
+                return "";
+            }
+
+            return app.testLinks
+                .filter((link) => link.url && link.url !== "#")
+                .map((link) => {
+                    const className = compact ? "secondary-button" : "chip-link";
+                    const target = escapeHtml(link.url);
+                    const title = link.note ? ` title="${escapeHtml(link.note)}"` : "";
+                    return `<a class="${className}" href="${target}" target="_blank" rel="noreferrer"${title}>${escapeHtml(link.label)}</a>`;
+                })
+                .join("");
         }
 
         function showView(viewId) {
@@ -927,6 +990,17 @@
                                 <span>${escapeHtml(app.privacy.lastUpdated)}</span>
                             </div>
                         </div>
+                        <div class="inline-actions" style="margin-top: 18px;">
+                            ${app.websiteUrl && app.websiteUrl !== "#" ? `<span class="badge">Website aktif</span>` : `<span class="badge badge-muted">Website henüz eklenmedi</span>`}
+                        </div>
+                        ${app.websiteUrl && app.websiteUrl !== "#" ? `
+                        <div class="section-card" style="margin-top: 22px;">
+                            <div class="mini-title">Uygulama web sitesi</div>
+                            <p class="muted">Bu uygulama için ayrı bir tanıtım veya destek sitesi kullanabilirsin.</p>
+                            <div class="inline-actions" style="margin-top: 16px;">
+                                <a class="primary-button" href="${escapeHtml(app.websiteUrl)}" target="_blank" rel="noreferrer">Websiteyi Aç</a>
+                            </div>
+                        </div>` : ""}
                         <div class="section-card" style="margin-top: 22px;">
                             <div class="mini-title">Öne çıkan özellikler</div>
                             ${renderList(app.features)}
@@ -942,13 +1016,32 @@
                         <div class="detail-actions" style="margin-top: 20px;">
                             <button class="primary-button" type="button" onclick="showPrivacy('${appId}')">Gizlilik Politikasını Aç</button>
                             <button class="secondary-button" type="button" onclick="showHome()">Kartlara Dön</button>
+                            <a class="secondary-button" href="${escapeHtml(app.privacyPage)}">Ayrı Gizlilik Sayfası</a>
+                            ${app.websiteUrl && app.websiteUrl !== "#" ? `<a class="secondary-button" href="${escapeHtml(app.websiteUrl)}" target="_blank" rel="noreferrer">Website</a>` : ""}
                             ${app.playStoreUrl && app.playStoreUrl !== "#" ? `<a class="secondary-button" href="${escapeHtml(app.playStoreUrl)}" target="_blank" rel="noreferrer">Google Play</a>` : ""}
                             ${app.appStoreUrl && app.appStoreUrl !== "#" ? `<a class="secondary-button" href="${escapeHtml(app.appStoreUrl)}" target="_blank" rel="noreferrer">App Store</a>` : ""}
+                            ${renderTestLinks(app, true)}
                         </div>
                         <div class="section-card" style="margin-top: 22px;">
                             <div class="mini-title">Kısa politika özeti</div>
                             <p class="muted" style="margin: 0;">${escapeHtml(app.privacy.summary)}</p>
                         </div>
+                        ${app.testLinks && app.testLinks.some((link) => link.url && link.url !== "#") ? `
+                        <div class="section-card" style="margin-top: 22px;">
+                            <div class="mini-title">Test bağlantıları</div>
+                            <p class="muted">Yayın öncesi deneme sürümlerini veya TestFlight / APK bağlantılarını burada paylaşabilirsin.</p>
+                            <div class="inline-actions" style="margin-top: 16px;">
+                                ${app.testLinks.filter((link) => link.url && link.url !== "#").map((link) => `
+                                    <a class="secondary-button" href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer" title="${escapeHtml(link.note || "")}">
+                                        ${escapeHtml(link.label)}
+                                    </a>
+                                `).join("")}
+                            </div>
+                        </div>` : `
+                        <div class="section-card" style="margin-top: 22px;">
+                            <div class="mini-title">Test bağlantıları</div>
+                            <p class="muted" style="margin: 0;">Bu uygulama için henüz aktif bir test bağlantısı eklenmedi.</p>
+                        </div>`}
                     </aside>
                 </div>
             `;
@@ -981,6 +1074,7 @@
                                 <div class="inline-actions" style="margin-top: 18px;">
                                     <button class="primary-button" type="button" onclick="showPrivacy('${id}')">Politikayı Aç</button>
                                     <button class="secondary-button" type="button" onclick="copyPolicyUrl('${id}')">Linki Kopyala</button>
+                                    <a class="secondary-button" href="${escapeHtml(app.privacyPage)}">Ayrı Sayfa</a>
                                 </div>
                             </div>
                         </article>
@@ -1061,12 +1155,13 @@
                             <div class="mini-title">Google Play için kullan</div>
                             <p class="muted">
                                 Aşağıdaki bağlantı bu uygulamanın doğrudan politika bağlantısıdır. Console içindeki ilgili alana bu
-                                linki ekleyebilirsin.
+                                linki ekleyebilirsin. Ayrıca istersen bağımsız HTML sayfasını da kullanabilirsin.
                             </p>
                             <div class="policy-url">${escapeHtml(getPolicyUrl(appId))}</div>
                             <div class="inline-actions" style="margin-top: 18px;">
                                 <button class="primary-button" type="button" onclick="copyPolicyUrl('${appId}')">Linki Kopyala</button>
                                 <button class="secondary-button" type="button" onclick="showAppDetail('${appId}')">Uygulama Detayı</button>
+                                <a class="secondary-button" href="${escapeHtml(app.privacyPage)}">Bağımsız Sayfayı Aç</a>
                             </div>
                         </section>
 
