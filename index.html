@@ -93,16 +93,49 @@
     </footer>
 
     <script>
-        let apps = {};
-
-        async function loadApps() {
-            try {
-                const response = await fetch('apps.json');
-                apps = await response.json();
-                renderApps();
-            } catch (err) {
-                console.error("Veri yüklenemedi:", err);
+        // Apps verisi - doğrudan HTML'e gömülü
+        let apps = {
+            "project-asistan": {
+                "title": "Gymix – Fitness, Habit & Focus",
+                "icon": "icons/gymix-logo.jpg",
+                "desc": "İşlerinizi organize etmenize yardımcı olan profesyonel bir araç.",
+                "features": [
+                    "Kullanıcı Dostu Arayüz",
+                    "Çevrimdışı Çalışma Desteği",
+                    "Bulut Senkronizasyonu"
+                ],
+                "version": "1.0.7",
+                "playStoreUrl": "https://play.google.com/store",
+                "appStoreUrl": "https://www.apple.com/app-store/",
+                "privacy": "Proje Asistanı, projelerinizi sadece cihazınızda saklar. Hiçbir kişisel veri reklam amaçlı kullanılmaz.",
+                "badge": "Yeni"
+            },
+            "gorev-takipci": {
+                "title": "Downgrade – Bacak Kası",
+                "icon": "icons/downgrade-logo.png",
+                "desc": "Günlük görevlerinizi kolayca yönetin ve üretkenliğinizi artırın.",
+                "features": ["Basit Arayüz", "Hatırlatıcılar", "Kategori Oluşturma"],
+                "version": "1.0.0",
+                "playStoreUrl": "#",
+                "appStoreUrl": "#",
+                "privacy": "Görev Takipçi uygulaması, görevlerinizi ve hatırlatıcılarınızı yerel veritabanında tutar.",
+                "badge": "Güncellendi"
+            },
+            "butce-yoneticisi": {
+                "title": "Hizli Cüzdan – Bütçe Yöneticisi",
+                "icon": "icons/fastwallet-logo.png",
+                "desc": "Gelir ve giderlerinizi takip ederek finansal hedeflerinize ulaşın.",
+                "features": ["Grafik Analizleri", "Excel Dışa Aktar", "Çoklu Para Birimi"],
+                "version": "1.0.0",
+                "playStoreUrl": "#",
+                "appStoreUrl": "#",
+                "privacy": "Bütçe Yöneticisi verilerinizi şifrelenmiş olarak saklar.",
+                "badge": null
             }
+        };
+
+        function loadApps() {
+            renderApps();
         }
 
         function renderApps() {
@@ -151,6 +184,7 @@
                         <div class="flex flex-wrap gap-4 mb-8">
                             ${app.playStoreUrl && app.playStoreUrl !== '#' ? `<a href="${app.playStoreUrl}" target="_blank" class="bg-black text-white px-6 py-3 rounded-xl font-bold flex items-center hover:scale-105 transition-transform"><span class="mr-2 text-xl">▶</span> Google Play</a>` : ''}
                             ${app.appStoreUrl && app.appStoreUrl !== '#' ? `<a href="${app.appStoreUrl}" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold flex items-center hover:scale-105 transition-transform"><span class="mr-2 text-xl">🍎</span> App Store</a>` : ''}
+                            <button onclick="showView('privacy')" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-xl font-bold flex items-center transition-transform hover:scale-105"><span class="mr-2 text-xl">📋</span> Gizlilik Politikası</button>
                         </div>
 
                         <div class="text-sm text-gray-400 dark:text-gray-500 font-mono">Versiyon: ${app.version}</div>
