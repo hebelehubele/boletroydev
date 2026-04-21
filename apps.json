@@ -1,39 +1,117 @@
 {
   "project-asistan": {
-    "title": "Gymix – Fitness, Habit & Focus",
+    "title": "Gymix - Fitness, Habit & Focus",
     "icon": "icons/gymix-logo.jpg",
-    "desc": "İşlerinizi organize etmenize yardımcı olan profesyonel bir araç.",
+    "desc": "Antrenman, alışkanlık ve odak rutinlerini tek yerde tutan sade bir yaşam tarzı uygulaması.",
     "features": [
-      "Kullanıcı Dostu Arayüz",
-      "Çevrimdışı Çalışma Desteği",
-      "Bulut Senkronizasyonu"
+      "Egzersiz ve rutin takibi",
+      "Alışkanlık planlama",
+      "Odak seansı ve ilerleme görünümü"
     ],
     "version": "1.0.7",
     "playStoreUrl": "https://play.google.com/store",
     "appStoreUrl": "https://www.apple.com/app-store/",
-    "privacy": "Proje Asistanı, projelerinizi sadece cihazınızda saklar. Hiçbir kişisel veri reklam amaçlı kullanılmaz.",
-    "badge": "Yeni"
+    "badge": "Yeni",
+    "privacy": {
+      "lastUpdated": "21 Nisan 2026",
+      "summary": "Gymix, kullanıcının fitness ve alışkanlık verilerini uygulama işlevlerini sunmak amacıyla işler. Uygulama, reklam satışı amacıyla kişisel verileri üçüncü taraflara satmaz.",
+      "dataCollected": [
+        "Kullanıcının manuel olarak eklediği antrenman kayıtları",
+        "Alışkanlık hedefleri, tamamlanma durumu ve odak seansı bilgileri",
+        "Uygulama ayarları, tema tercihi ve cihaz üzerinde tutulan teknik kullanım verileri"
+      ],
+      "dataNotCollected": [
+        "Kredi kartı veya ödeme bilgileri",
+        "Resmi kimlik numarası",
+        "Rehber, kısa mesaj veya çağrı kayıtları"
+      ],
+      "usagePurposes": [
+        "Temel uygulama fonksiyonlarını sunmak",
+        "Kullanıcının geçmiş kayıtlarını göstermek",
+        "Cihaz üzerinde kişiselleştirilmiş deneyim sağlamak",
+        "Hata ayıklama ve hizmet kalitesini iyileştirmek"
+      ],
+      "sharing": "Gymix kapsamında tutulan kişisel veriler, reklam veya pazarlama amacıyla satılmaz. Yasal yükümlülük doğması dışında veriler üçüncü taraflarla paylaşılmaz.",
+      "storage": "Veriler ağırlıklı olarak cihaz üzerinde veya uygulama altyapısında hizmet sunumu için gerekli süre boyunca saklanır. Kullanıcı uygulama içeriğini sildiğinde ya da kaldırdığında ilgili kayıtlar erişilemez hale gelir.",
+      "security": "Uygulama içinde saklanan bilgiler yetkisiz erişime karşı makul teknik ve idari önlemlerle korunur. Buna erişim kısıtlamaları, güvenli aktarım yöntemleri ve düzenli bakım süreçleri dahildir.",
+      "children": "Gymix genel kitleye yöneliktir ve özellikle çocuklara hedeflenmez. Geliştirici, ebeveyn onayı gerektiren yaş grubundan bilerek veri toplama amacı taşımaz.",
+      "userRights": "Kullanıcı, uygulama içindeki verilerini düzenleyebilir, silebilir veya uygulamayı kaldırarak yerel verileri kaldırabilir. Geçerli mevzuat kapsamındaki talepler için mağaza geliştirici iletişim kanalı kullanılabilir."
+    }
   },
   "gorev-takipci": {
-    "title": "Downgrade – Bacak Kası",
+    "title": "Downgrade - Bacak Kası",
     "icon": "icons/downgrade-logo.png",
-    "desc": "Günlük görevlerinizi kolayca yönetin ve üretkenliğinizi artırın.",
-    "features": ["Basit Arayüz", "Hatırlatıcılar", "Kategori Oluşturma"],
+    "desc": "Basit görev akışı, kısa notlar ve kişisel plan takibi için hafif bir yardımcı uygulama.",
+    "features": [
+      "Görev ve liste yönetimi",
+      "Hatırlatıcı mantığı",
+      "Basit kategori düzeni"
+    ],
     "version": "1.0.0",
     "playStoreUrl": "#",
     "appStoreUrl": "#",
-    "privacy": "Görev Takipçi uygulaması, görevlerinizi ve hatırlatıcılarınızı yerel veritabanında tutar.",
-    "badge": "Güncellendi"
+    "badge": "Güncellendi",
+    "privacy": {
+      "lastUpdated": "21 Nisan 2026",
+      "summary": "Downgrade - Bacak Kası, kullanıcının eklediği görevleri ve uygulama tercihlerini çalışabilmek için kullanır. Uygulama basit işlevli olduğu için veri işleme kapsamı sınırlıdır.",
+      "dataCollected": [
+        "Kullanıcının oluşturduğu görev başlıkları ve görev notları",
+        "Hatırlatıcı tercihleri ve görev durumu bilgileri",
+        "Temel cihaz içi ayarlar"
+      ],
+      "dataNotCollected": [
+        "Konum verisi",
+        "Finansal bilgi",
+        "Sağlık verisi"
+      ],
+      "usagePurposes": [
+        "Görev listelerini göstermek ve güncellemek",
+        "Hatırlatıcı mantığını çalıştırmak",
+        "Kullanıcının ayarlarını korumak"
+      ],
+      "sharing": "Bu uygulamadaki görev ve not verileri reklam, profil çıkarma veya veri komisyonculuğu amacıyla üçüncü kişilere aktarılmaz.",
+      "storage": "Veriler temel olarak kullanıcının cihazında tutulur. Uygulama kaldırıldığında veya veriler temizlendiğinde ilgili içerikler silinir.",
+      "security": "Basit uygulama yapısına uygun olarak erişim sınırlandırmaları ve platformun sunduğu güvenlik önlemleri kullanılır.",
+      "children": "Uygulama çocuklara özel olarak tasarlanmamıştır ve bilerek çocuklardan kişisel veri toplamayı hedeflemez.",
+      "userRights": "Kullanıcı kendi oluşturduğu içerikleri dilediği zaman güncelleyebilir veya silebilir. Politika ile ilgili talepler mağaza geliştirici iletişim adresi üzerinden iletilebilir."
+    }
   },
   "butce-yoneticisi": {
-    "title": "Hizli Cüzdan – Bütçe Yöneticisi",
+    "title": "Hızlı Cüzdan - Bütçe Yöneticisi",
     "icon": "icons/fastwallet-logo.png",
-    "desc": "Gelir ve giderlerinizi takip ederek finansal hedeflerinize ulaşın.",
-    "features": ["Grafik Analizleri", "Excel Dışa Aktar", "Çoklu Para Birimi"],
+    "desc": "Gelir gider takibi, kategori yönetimi ve kişisel bütçe görünümü için tasarlanmış sade finans yardımcı uygulaması.",
+    "features": [
+      "Gelir ve gider kaydı",
+      "Kategori bazlı özetler",
+      "Dışa aktarma ve temel rapor mantığı"
+    ],
     "version": "1.0.0",
     "playStoreUrl": "#",
     "appStoreUrl": "#",
-    "privacy": "Bütçe Yöneticisi verilerinizi şifrelenmiş olarak saklar.",
-    "badge": null
+    "badge": null,
+    "privacy": {
+      "lastUpdated": "21 Nisan 2026",
+      "summary": "Hızlı Cüzdan, kullanıcının bütçe kayıtlarını kişisel finans takibi amacıyla işler. Finansal yönetim aracı olmasına rağmen banka hesabına doğrudan erişim sağlamaz ve ödeme işlemi yürütmez.",
+      "dataCollected": [
+        "Kullanıcının eklediği gelir ve gider kayıtları",
+        "Kategori, açıklama ve tarih bilgileri",
+        "Uygulama tercihleri ve temel teknik kayıtlar"
+      ],
+      "dataNotCollected": [
+        "Kredi kartı numarası",
+        "Banka giriş bilgileri",
+        "Biyometrik kimlik verileri"
+      ],
+      "usagePurposes": [
+        "Bütçe ekranında kayıtların gösterilmesi",
+        "Finansal özet ve rapor üretimi",
+        "Kullanıcı deneyimini sürdürebilmek için tercihlerin korunması"
+      ],
+      "sharing": "Kullanıcının bütçe kayıtları reklam ağlarıyla paylaşılmaz ve veri satışı yapılmaz. Ancak yasal gereklilik veya kullanıcı talebi halinde sınırlı işlem yapılabilir.",
+      "storage": "Girilen kayıtlar, uygulama işlevlerini sürdürebilmek için gerekli süre boyunca saklanır. Kullanıcı verileri silerse veya uygulamayı kaldırırsa erişim sona erer.",
+      "security": "Veriler platformun sağladığı güvenlik imkanları ve uygulama içi makul koruma önlemleri ile saklanır. Amaç yetkisiz erişim riskini azaltmaktır.",
+      "children": "Hızlı Cüzdan genel kullanıcı kitlesine yöneliktir; çocuklara yönelik özel içerik veya bilinçli çocuk verisi toplama faaliyeti içermez.",
+      "userRights": "Kullanıcı kayıtlarını düzenleyebilir, silebilir ve uygun yasal çerçevede bilgi talebinde bulunabilir. Resmi iletişim için mağaza geliştirici iletişim kanalı kullanılabilir."
+    }
   }
 }
