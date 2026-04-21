@@ -1,7 +1,7 @@
 {
   "project-asistan": {
     "title": "Gymix – Fitness, Habit & Focus",
-    "icon": "icons/Gymix.png",
+    "icon": "icons/gymix-logo.jpg",
     "desc": "İşlerinizi organize etmenize yardımcı olan profesyonel bir araç.",
     "features": [
       "Kullanıcı Dostu Arayüz",
@@ -16,7 +16,7 @@
   },
   "gorev-takipci": {
     "title": "Downgrade – Bacak Kası",
-    "icon": "icons/gorev-takipci.png",
+    "icon": "icons/downgrade-logo.png",
     "desc": "Günlük görevlerinizi kolayca yönetin ve üretkenliğinizi artırın.",
     "features": ["Basit Arayüz", "Hatırlatıcılar", "Kategori Oluşturma"],
     "version": "1.0.0",
