@@ -710,76 +710,13 @@
         function boot() {
             const appCountEl = document.getElementById("app-count");
             const policyCountEl = document.getElementById("policy-count");
-            const appsGrid = document.getElementById("apps-grid");
-            const detailContent = document.getElementById("detail-content");
-            const privacyContent = document.getElementById("privacy-content");
-            const themeToggle = document.getElementById("theme-toggle");
-            const backToTop = document.getElementById("back-to-top");
-            const htmlElement = document.documentElement;
 
-            function handleRoute() {
-                const hash = window.location.hash.replace(/^#/, "");
-
-                if (!hash || hash === "home") {
-                    showView("home");
-                    return;
-                }
-
-                if (hash === "privacy") {
-                    renderPolicyHub();
-                    showView("privacy");
-                    return;
-                }
-
-                if (hash.startsWith("privacy/")) {
-                    const appId = hash.replace("privacy/", "");
-                    showPrivacy(appId);
-                    return;
-                }
-
-                if (hash.startsWith("app/")) {
-                    const appId = hash.replace("app/", "");
-                    showAppDetail(appId);
-                    return;
-                }
-
-                showView("home");
-            }
-
-            function initTheme() {
-                const savedTheme = localStorage.getItem("theme");
-                if (savedTheme === "dark") {
-                    htmlElement.classList.add("dark");
-                    themeToggle.textContent = "☀️ Açık Tema";
-                } else {
-                    htmlElement.classList.remove("dark");
-                    themeToggle.textContent = "🌙 Koyu Tema";
-                }
-            }
-
-            function toggleBackToTop() {
-                if (window.scrollY > 300) {
-                    backToTop.classList.add("visible");
-                } else {
-                    backToTop.classList.remove("visible");
-                }
-            }
-
-            function scrollToTop() {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            }
-
-            themeToggle.addEventListener("click", () => {
-                htmlElement.classList.toggle("dark");
-                localStorage.setItem("theme", htmlElement.classList.contains("dark") ? "dark" : "light");
-                themeToggle.textContent = htmlElement.classList.contains("dark") ? "☀️ Açık Tema" : "🌙 Koyu Tema";
-            });
-
-            backToTop.addEventListener("click", scrollToTop);
-            window.addEventListener("scroll", toggleBackToTop);
+            appCountEl.textContent = appList.length;
+            policyCountEl.textContent = appList.length;
+            renderApps();
         }
 
-        window.addEventListener("load", boot);
+        boot();
     </script>
 </body>
 
