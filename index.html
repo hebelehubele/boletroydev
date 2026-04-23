@@ -380,6 +380,14 @@
         const backToTop = document.getElementById("back-to-top");
         const htmlElement = document.documentElement;
 
+        const appList = Object.entries(apps);
+        const appCountEl = document.getElementById("app-count");
+        const policyCountEl = document.getElementById("policy-count");
+        const appsGrid = document.getElementById("apps-grid");
+        const detailContent = document.getElementById("detail-content");
+        const privacyContent = document.getElementById("privacy-content");
+        const themeToggle = document.getElementById("theme-toggle");
+
         function escapeHtml(value) {
             return String(value)
                 .replaceAll("&", "&amp;")
