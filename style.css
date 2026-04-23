@@ -51,10 +51,17 @@ body {
         radial-gradient(circle at 40% 40%, rgba(251, 146, 60, 0.08), transparent 30%),
         linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1)),
         var(--bg);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
     color: var(--text);
     transition: background 0.25s ease, color 0.25s ease;
-    animation: fadeIn 1s ease-in;
     min-height: 100vh;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 @keyframes fadeIn {
@@ -132,6 +139,7 @@ html.dark .nav {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    animation: pulse 3s ease-in-out infinite;
 }
 
 .brand-mark::before {
@@ -849,6 +857,7 @@ html.dark .nav {
     transform: translateY(-3px) scale(1.1);
     box-shadow: var(--shadow-hover);
     background: linear-gradient(135deg, var(--accent-strong), var(--accent2));
+    animation: bounce 1s ease-in-out;
 }
 
 .back-to-top:focus {
