@@ -396,10 +396,8 @@
 
         function getPolicyUrl(appId) {
             const app = apps[appId];
-            if (!app) {
-                return `${window.location.origin}${window.location.pathname}#privacy`;
-            }
-            return `${window.location.origin}${window.location.pathname.replace(/[^/]*$/, "")}${app.privacyPage}`;
+            const target = app ? app.privacyPage : "#privacy";
+            return new URL(target, window.location.href).href;
         }
 
         function renderList(items, className = "feature-list") {
@@ -453,7 +451,7 @@
 
         function filterApps() {
             const query = document.getElementById("app-search").value.toLowerCase();
-            const cards = document.querySelectorAll(".app-card");
+            const cards = document.querySelectorAll("#apps-grid .app-card");
             cards.forEach(card => {
                 const title = card.querySelector(".app-title").textContent.toLowerCase();
                 const desc = card.querySelector(".muted").textContent.toLowerCase();
@@ -465,21 +463,33 @@
             });
         }
 
-        function showView(viewId) {
+        function showView(viewId, options = {}) {
+            const { scroll = true } = options;
             document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
             document.getElementById(viewId).classList.add("active");
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            if (scroll) {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        }
+
+        function navigateToHash(hash, onSameHash) {
+            const nextHash = `#${hash.replace(/^#/, "")}`;
+            if (window.location.hash === nextHash) {
+                onSameHash();
+                return;
+            }
+            window.location.hash = nextHash;
         }
 
         function showHome() {
-            window.location.hash = "home";
-            showView("home");
+            navigateToHash("home", () => showView("home"));
         }
 
         function showPolicies() {
-            renderPolicyHub();
-            window.location.hash = "privacy";
-            showView("privacy");
+            navigateToHash("privacy", () => {
+                renderPolicyHub();
+                showView("privacy");
+            });
         }
 
         function jumpToApp(appId) {
@@ -489,7 +499,8 @@
             showAppDetail(appId);
         }
 
-        function showAppDetail(appId) {
+        function showAppDetail(appId, options = {}) {
+            const { updateHash = true, scroll = true } = options;
             const app = apps[appId];
             if (!app) {
                 return;
@@ -577,8 +588,12 @@
                 </div>
             `;
 
-            window.location.hash = `app/${appId}`;
-            showView("detail");
+            if (updateHash) {
+                navigateToHash(`app/${appId}`, () => showAppDetail(appId, { updateHash: false, scroll }));
+                return;
+            }
+
+            showView("detail", { scroll });
         }
 
         function renderPolicyHub() {
@@ -615,11 +630,12 @@
             `;
         }
 
-        function showPrivacy(appId) {
+        function showPrivacy(appId, options = {}) {
+            const { updateHash = true, scroll = true } = options;
             const app = apps[appId];
             if (!app) {
                 renderPolicyHub();
-                showView("privacy");
+                showView("privacy", { scroll });
                 return;
             }
 
@@ -711,8 +727,12 @@
                 </div>
             `;
 
-            window.location.hash = `privacy/${appId}`;
-            showView("privacy");
+            if (updateHash) {
+                navigateToHash(`privacy/${appId}`, () => showPrivacy(appId, { updateHash: false, scroll }));
+                return;
+            }
+
+            showView("privacy", { scroll });
         }
 
         async function copyPolicyUrl(appId) {
@@ -746,6 +766,62 @@
             themeToggle.textContent = isDark ? "☀️ Güneş" : "🌙 Tema";
         }
 
+        function initTheme() {
+            const themeToggle = document.getElementById("theme-toggle");
+            const savedTheme = localStorage.getItem("theme");
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+            if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add("dark");
+                themeToggle.textContent = "Acik tema";
+                themeToggle.setAttribute("aria-label", "Acik temaya gec");
+                themeToggle.setAttribute("aria-pressed", "true");
+            } else {
+                document.documentElement.classList.remove("dark");
+                themeToggle.textContent = "Koyu tema";
+                themeToggle.setAttribute("aria-label", "Koyu temaya gec");
+                themeToggle.setAttribute("aria-pressed", "false");
+            }
+        }
+
+        function toggleTheme() {
+            const themeToggle = document.getElementById("theme-toggle");
+            const isDark = document.documentElement.classList.toggle("dark");
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+            themeToggle.textContent = isDark ? "Acik tema" : "Koyu tema";
+            themeToggle.setAttribute("aria-label", isDark ? "Acik temaya gec" : "Koyu temaya gec");
+            themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+        }
+
+        function handleRoute() {
+            const route = window.location.hash.replace(/^#/, "");
+
+            if (!route || route === "home") {
+                showView("home", { scroll: false });
+                return;
+            }
+
+            const [view, appId] = route.split("/");
+
+            if (view === "privacy") {
+                if (appId && apps[appId]) {
+                    showPrivacy(appId, { updateHash: false, scroll: false });
+                    return;
+                }
+
+                renderPolicyHub();
+                showView("privacy", { scroll: false });
+                return;
+            }
+
+            if (view === "app" && appId && apps[appId]) {
+                showAppDetail(appId, { updateHash: false, scroll: false });
+                return;
+            }
+
+            showView("home", { scroll: false });
+        }
+
         function boot() {
             const appCountEl = document.getElementById("app-count");
             const policyCountEl = document.getElementById("policy-count");
@@ -776,14 +852,12 @@
 
             // Show/hide back to top
             window.addEventListener("scroll", () => {
-                if (window.scrollY > 300) {
-                    backToTop.style.opacity = "1";
-                    backToTop.style.pointerEvents = "auto";
-                } else {
-                    backToTop.style.opacity = "0";
-                    backToTop.style.pointerEvents = "none";
-                }
+                backToTop.classList.toggle("visible", window.scrollY > 300);
             });
+            backToTop.classList.toggle("visible", window.scrollY > 300);
+
+            window.addEventListener("hashchange", handleRoute);
+            handleRoute();
         }
 
         boot();
