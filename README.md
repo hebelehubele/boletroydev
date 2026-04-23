@@ -2,6 +2,16 @@
 
 Bu proje, uygulamalarını tek yerde tanıtmak ve her uygulama için ayrı gizlilik politikası sayfası yayımlamak için hazırlandı.
 
+## 🚀 Özellikler
+
+- **Uygulama Vitrin**: Modern kart tasarımı ile uygulama tanıtımı
+- **Arama Fonksiyonu**: Uygulama kartlarını başlık ve açıklamaya göre ara
+- **Koyu/Açık Tema**: Otomatik sistem tercihini algılayan tema değiştirici
+- **Animasyonlar**: Yumuşak geçişler, hover efektleri ve arka plan animasyonları
+- **Responsive Tasarım**: Mobil uyumlu, tüm cihazlarda çalışır
+- **Gizlilik Politikaları**: Her uygulama için ayrı, Google Play uyumlu politika sayfaları
+- **SEO Dostu**: Meta etiketleri ve yapılandırılmış veriler
+
 Ana mantık:
 
 - Ana vitrin sayfası: [index.html](./index.html)
@@ -10,6 +20,8 @@ Ana mantık:
   `gymix-privacy.html`
   `downgrade-privacy.html`
   `fastwallet-privacy.html`
+  `voltlog-privacy.html`
+  `calf-raises-privacy.html`
 
 Bu yapı özellikle şu senaryo için uygun:
 
@@ -37,6 +49,15 @@ Yeni bir app eklerken genelde 4 adım yeterli:
 2. `apps.json` içine yeni uygulamayı ekle.
 3. Aynı uygulama için yeni bir `*-privacy.html` dosyası oluştur.
 4. Gerekirse test linklerini ve website linkini doldur.
+
+## Kullanım
+
+- **Ana Sayfa**: Tüm uygulamaları listeler
+- **Arama**: Navigasyon çubuğundaki arama kutusu ile uygulama ara
+- **Detay**: Karttaki "Detaya Git" butonu ile uygulama detaylarını gör
+- **Gizlilik**: "Gizlilik" butonu ile politika sayfasına git
+- **Tema**: Sağ üstteki tema butonu ile koyu/açık modu değiştir
+- **Başa Dön**: Sayfa sonundaki ↑ butonu ile tepeye dön
 
 ## apps.json Şablonu
 
